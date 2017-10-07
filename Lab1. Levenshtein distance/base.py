@@ -13,7 +13,10 @@ def distance(s1, s2):
                                 row2[j - 1] + 1,
                                 row1[j - 1] + 1))
             else:
-                row2.append(row1[j - 1])  # if match
+                row2.append(min(row1[j] + 1,  # there are three variants
+                                row2[j - 1] + 1,
+                                row1[j - 1]))  # if match
+
         # print(row2)
         row1 = row2  # change rows
         row2 = [i + 1]
@@ -22,4 +25,4 @@ def distance(s1, s2):
 
 
 if __name__ == "__main__":
-    print(distance("ма", "ам"))
+    print(distance("ме", "м"))
