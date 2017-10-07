@@ -29,8 +29,35 @@ def result_test():
 
 
 def time_test():
-    pass
+    t1, t2, t3 = 0, 0, 0
+
+    s1 = "aaaaaa"
+    for i in range(10):
+        s2 = "a" * (7 - i) + "b" * i
+
+        for j in range(100):
+
+            start = time.time()
+            a = bs.distance(s1, s2)
+            stop = time.time()
+
+            t1 += (stop - start)
+
+            start = time.time()
+            b = md.distance(s1, s2)
+            stop = time.time()
+
+            t2 += (stop - start)
+
+            start = time.time()
+            c = rec.distance(s1, s2)
+            stop = time.time()
+
+            t3 += (stop - start)
+
+        print("{0:f} {1:f} {2:f}    {3}{4}{5}".format(t1/100*1000, t2/100*1000, t3/100*1000, a, b, c))
 
 
 if __name__ == "__main__":
-    result_test()
+    # result_test()
+    time_test()
