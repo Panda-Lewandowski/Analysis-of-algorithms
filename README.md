@@ -1,5 +1,5 @@
 # Analysis-of-algorithms
-     2nd course, 4th semester
+     3nd course, 5th semester
 
     Bauman Moscow State Technical University
 
