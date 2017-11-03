@@ -25,4 +25,4 @@ def distance(s1, s2):
 
 
 if __name__ == "__main__":
-    print(distance("ме", "м"))
+    print(distance("мет", "от"))
