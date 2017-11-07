@@ -33,7 +33,7 @@ def multi_multiproc(A, B):
 
     for row in A:
         executor.submit(result.append, [sum(starmap(mul, zip(row, column))) for column in tmp])
-    
+
     executor.shutdown()
 
     return result

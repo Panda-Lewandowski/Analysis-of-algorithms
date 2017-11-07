@@ -62,8 +62,8 @@ def time_testing():
 
     print("\n\n40 X 40\n")
 
-    a = random_matrix(40, 40)
-    b = random_matrix(40, 40)
+    a = random_matrix(130, 100)
+    b = random_matrix(100, 130)
 
     t1, t2 = 0, 0
 
@@ -80,8 +80,8 @@ def time_testing():
 
         t2 += (stop - start)
 
-    print("Classic multiplication of matrix: {0:f} sec\n"
-          "Winorgad multiplication of matrix: {1:f} sec\n"
+    print("Classic multiplication of matrix: {0:f} msec\n"
+          "Winorgad multiplication of matrix: {1:f} msec\n"
           "Are result matrix equivalent? {2}".format(t1 * 10, t2 * 10, res_class == res_wino))
 
 
