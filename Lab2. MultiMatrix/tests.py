@@ -3,6 +3,10 @@ from time import time
 from classic_multi_matrix import classic_multi
 from imprv_classic_multi_matrix import imprv_classic_multi
 from winograd_multi_matrix import winograd_multi
+from imprv_winograd_multi_matrix import imprv_winograd_multi
+
+
+TIMES = 3
 
 
 def random_matrix(n, m):
@@ -12,99 +16,91 @@ def random_matrix(n, m):
 def time_testing():
     print('...TIMING...\n\n')
 
-    print("5 X 5\n")
+    with open('log.txt', 'w') as f:
 
-    a = random_matrix(20, 20)
-    b = random_matrix(20, 20)
+        f.write("Size      | Classic   | Winorgad  | Imprv Wino   | Impv Classic\n")
 
-    t1, t2, t3 = 0, 0, 0
+        for size in range(100, 1100, 100):
 
-    for i in range(100):
+            print('Multiplication of matrix {0} X {0} '.format(size))
 
-        start = time()
-        res_class = classic_multi(a, b)
-        stop = time()
+            f.write("{0} X {0} |".format(size))
 
-        t1 += (stop - start)
+            a = random_matrix(size, size)
+            b = random_matrix(size, size)
 
-        start = time()
-        res_wino = winograd_multi(a, b)
-        stop = time()
+            t1, t2, t3, t4 = 0, 0, 0, 0
 
-        t2 += (stop - start)
+            for i in range(TIMES):
 
-        start = time()
-        res_imprv = imprv_classic_multi(a, b)
-        stop = time()
+                start = time()
+                res_class = classic_multi(a, b)
+                stop = time()
 
-        t3 += (stop - start)
+                t1 += (stop - start)
 
-    print("Classic multiplication of matrix: {0:f} sec\n"
-          "Winorgad multiplication of matrix: {1:f} sec\n"
-          "Imporove classic multiplication of matrix: {2:f} sec\n"
-          "Are result matrix equivalent? {3}".format(t1 * 10, t2 * 10, t3 * 10, res_class == res_wino))
+                start = time()
+                res_wino = winograd_multi(a, b)
+                stop = time()
 
-    print("\n\n20 X 20\n")
+                t2 += (stop - start)
 
-    a = random_matrix(20, 20)
-    b = random_matrix(20, 20)
+                start = time()
+                res_wino_imprv = imprv_winograd_multi(a, b)
+                stop = time()
 
-    t1, t2, t3 = 0, 0, 0
+                t3 += (stop - start)
 
-    for i in range(100):
-        start = time()
-        res_class = classic_multi(a, b)
-        stop = time()
+                start = time()
+                res_imprv = imprv_classic_multi(a, b)
+                stop = time()
 
-        t1 += (stop - start)
+                t4 += (stop - start)
 
-        start = time()
-        res_wino = winograd_multi(a, b)
-        stop = time()
+            f.write(" {0:<.5f}   | {1:<.5f}   | {2:<.5f}      | {3:<.5f}\n".format(t1 * 1000/TIMES, t2 * 1000/TIMES,
+                                                             t3 * 1000/TIMES, t4 * 1000/TIMES))
 
-        t2 += (stop - start)
+        for size in range(100, 1100, 100):
+                size += 1
 
-        start = time()
-        res_imprv = imprv_classic_multi(a, b)
-        stop = time()
+                print('Multiplication of matrix {0} X {0} '.format(size))
 
-        t3 += (stop - start)
+                f.write("{0} X {0} |".format(size))
 
-    print("Classic multiplication of matrix: {0:f} sec\n"
-          "Winorgad multiplication of matrix: {1:f} sec\n"
-          "Imporove classic multiplication of matrix: {2:f} sec\n"
-          "Are result matrix equivalent? {3}".format(t1 * 10, t2 * 10, t3 * 10, res_class == res_wino))
+                a = random_matrix(size, size)
+                b = random_matrix(size, size)
 
-    print("\n\n40 X 40\n")
+                t1, t2, t3, t4 = 0, 0, 0, 0
 
-    a = random_matrix(130, 130)
-    b = random_matrix(130, 130)
+                for i in range(TIMES):
+                    start = time()
+                    res_class = classic_multi(a, b)
+                    stop = time()
 
-    t1, t2, t3 = 0, 0, 0
+                    t1 += (stop - start)
 
-    for i in range(100):
-        start = time()
-        res_class = classic_multi(a, b)
-        stop = time()
+                    start = time()
+                    res_wino = imprv_winograd_multi(a, b)
+                    stop = time()
 
-        t1 += (stop - start)
+                    t2 += (stop - start)
 
-        start = time()
-        res_wino = winograd_multi(a, b)
-        stop = time()
+                    start = time()
+                    res_wino_imprv = imprv_winograd_multi(a, b)
+                    stop = time()
 
-        t2 += (stop - start)
+                    t3 += (stop - start)
 
-        start = time()
-        res_imprv = imprv_classic_multi(a, b)
-        stop = time()
+                    start = time()
+                    res_imprv = imprv_classic_multi(a, b)
+                    stop = time()
 
-        t3 += (stop - start)
+                    t4 += (stop - start)
 
-    print("Classic multiplication of matrix: {0:f} msec\n"
-          "Winorgad multiplication of matrix: {1:f} msec\n"
-          "Imporove classic multiplication of matrix: {2:f} sec\n"
-          "Are result matrix equivalent? {3}".format(t1 * 10, t2 * 10, t3 * 10, res_class == res_wino))
+                f.write(" {0:<.5f}   | {1:<.5f}   | {2:<.5f}      | {3:<.5f}\n".format(t1 * 1000 / TIMES, t2 * 1000 / TIMES,
+                                                                 t3 * 1000 / TIMES, t4 * 1000 / TIMES))
+
+    print('...end...\n\n')
 
 
 if __name__ == '__main__':
