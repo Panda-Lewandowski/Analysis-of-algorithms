@@ -1,5 +1,5 @@
 from random import randint
-from time import time
+from time import clock
 from classic_multi_matrix import classic_multi
 from imprv_classic_multi_matrix import imprv_classic_multi
 from winograd_multi_matrix import winograd_multi
@@ -33,27 +33,27 @@ def time_testing():
 
             for i in range(TIMES):
 
-                start = time()
+                start = clock()
                 res_class = classic_multi(a, b)
-                stop = time()
+                stop = clock()
 
                 t1 += (stop - start)
 
-                start = time()
+                start = clock()
                 res_wino = winograd_multi(a, b)
-                stop = time()
+                stop = clock()
 
                 t2 += (stop - start)
 
-                start = time()
+                start = clock()
                 res_wino_imprv = imprv_winograd_multi(a, b)
-                stop = time()
+                stop = clock()
 
                 t3 += (stop - start)
 
-                start = time()
+                start = clock()
                 res_imprv = imprv_classic_multi(a, b)
-                stop = time()
+                stop = clock()
 
                 t4 += (stop - start)
 
@@ -73,32 +73,32 @@ def time_testing():
                 t1, t2, t3, t4 = 0, 0, 0, 0
 
                 for i in range(TIMES):
-                    start = time()
+                    start = clock()
                     res_class = classic_multi(a, b)
-                    stop = time()
+                    stop = clock()
 
                     t1 += (stop - start)
 
-                    start = time()
-                    res_wino = imprv_winograd_multi(a, b)
-                    stop = time()
+                    start = clock()
+                    res_wino = winograd_multi(a, b)
+                    stop = clock()
 
                     t2 += (stop - start)
 
-                    start = time()
+                    start = clock()
                     res_wino_imprv = imprv_winograd_multi(a, b)
-                    stop = time()
+                    stop = clock()
 
                     t3 += (stop - start)
 
-                    start = time()
+                    start = clock()
                     res_imprv = imprv_classic_multi(a, b)
-                    stop = time()
+                    stop = clock()
 
                     t4 += (stop - start)
 
                 f.write(" {0:<.5f}   | {1:<.5f}   | {2:<.5f}      | {3:<.5f}\n".format(t1 * 1000 / TIMES, t2 * 1000 / TIMES,
-                                                                 t3 * 1000 / TIMES, t4 * 1000 / TIMES))
+                                                                                        t3 * 1000 / TIMES, t4 * 1000 / TIMES))
 
     print('...end...\n\n')
 
