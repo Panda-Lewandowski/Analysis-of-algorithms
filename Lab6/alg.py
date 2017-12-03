@@ -41,7 +41,7 @@ def is_visible(bar, rect): # (9)
     return vis  # (9.9)
 
 
-def cohen_sutherland(bar, rect): # (0)
+def cohen_sutherland(bar, rect): #9 (0)
     # инициализация флага
     flag = 1 # общего положения (1)
     t = 1 # (2)
