@@ -1,8 +1,8 @@
 import numpy as np
 import random as rnd
 
-MAX_DIS = 10  # minimum distance
-MIN_DIS = 1  # maximum distance
+MAX_DIS = 10  # maximum distance
+MIN_DIS = 1  # minimum distance
 
 
 def fill_dis_matr(n):
@@ -14,14 +14,14 @@ def fill_dis_matr(n):
     return m
 
 
-m = 10  # amount of ants and cities
+m = 15  # amount of ants and cities
 e = 2  # amount of elite ants
 
-a = 1    # coefficient of strengthen the sense of smell
-b = 2  # coefficient of strengthen of desire
+a = 2    # coefficient of strengthen the sense of smell
+b = 1  # coefficient of strengthen of desire
 Q = MIN_DIS * m  # coefficient of the alleged best way
 t_max = 200   # the amount of "generations"
-p = 0.1  # coefficient of evaporation
+p = 0.5  # coefficient of evaporation
 
 
 def aco(m, e, d, t_max, alpha, beta, q):
@@ -81,5 +81,5 @@ def aco(m, e, d, t_max, alpha, beta, q):
 
 if __name__ == "__main__":
     D = fill_dis_matr(m)  # matrix of distance
-    # print(D)
+    print(D)
     print(aco(m, e, D, t_max, a, b, Q))

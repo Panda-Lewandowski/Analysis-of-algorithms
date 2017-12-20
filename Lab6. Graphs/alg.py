@@ -87,3 +87,4 @@ def cohen_sutherland(bar, rect): #9 (0)
 
         bar[0][1] = rect[i]  # (27)
     scene.addLine(bar[0][0], bar[0][1], bar[1][0], bar[1][1]) # (28)
+    
