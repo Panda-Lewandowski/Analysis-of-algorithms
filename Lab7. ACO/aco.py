@@ -14,7 +14,7 @@ def fill_dis_matr(n):
     return m
 
 
-m = 15  # amount of ants and cities
+m = 5  # amount of ants and cities
 e = 2  # amount of elite ants
 
 a = 2    # coefficient of strengthen the sense of smell
@@ -24,7 +24,7 @@ t_max = 200   # the amount of "generations"
 p = 0.5  # coefficient of evaporation
 
 
-def aco(m, e, d, t_max, alpha, beta, q):
+def aco(m, e, d, t_max, alpha, beta, p, q):
     nue = 1 / d  # matrix of desire
     teta = np.random.sample((m, m))  # init ferromon paths, here may be np.zeros((m,m))
     T_min = None  # min path
@@ -80,6 +80,11 @@ def aco(m, e, d, t_max, alpha, beta, q):
 
 
 if __name__ == "__main__":
-    D = fill_dis_matr(m)  # matrix of distance
-    print(D)
-    print(aco(m, e, D, t_max, a, b, Q))
+   # D = fill_dis_matr(m)  # matrix of distance
+    d_fix = np.array([[0, 5, 7, 10, 5],
+                      [5, 0, 6, 2, 8],
+                      [7, 6, 0, 8, 8],
+                      [10, 2, 8, 0, 6],
+                      [5, 8, 8, 6, 0]])
+
+    print(aco(m, e,d_fix, t_max, a, b, p, Q))
