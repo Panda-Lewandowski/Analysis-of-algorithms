@@ -72,7 +72,7 @@ def aco(m, e, d, t_max, alpha, beta, p, q):
                 b = Tk[g + 1]
                 teta_k[a][b] += q / Lk
 
-        teta_e = (e * Q / L_min) if L_min else 0   # elite ants
+        teta_e = (e * q / L_min) if L_min else 0   # elite ants
         teta = (1 - p) * teta + teta_k + teta_e     # update ferromons after generation
         t += 1
 
